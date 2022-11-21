@@ -18,9 +18,9 @@ const routes = [
 const router = createRouter({
   history: createWebHistory('/'),
   routes,
-  scrollBehavior() {
-    document.getElementById('app').scrollIntoView();
-  }
+  // scrollBehavior() {
+  //   document.getElementById('app').scrollIntoView();
+  // }
 });
 
 export default router;
