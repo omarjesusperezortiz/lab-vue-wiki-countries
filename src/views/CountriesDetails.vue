@@ -1,7 +1,5 @@
 <template>
-
   <div>
-
     <img
       :src="`https://flagpedia.net/data/flags/icon/72x54/${paisInfo.alpha2Code.toLowerCase()}.png`"
       alt=""
