@@ -1,46 +1,71 @@
 <template>
 
-<div class="section">
-    <figure class="image is-128x128">
-        <img :src="`https://flagpedia.net/data/flags/icon/72x54/${country.alpha2Code.toLowerCase()}.png`">
-    </figure>
-    <span> {{country.name.common}}</span>
-</div>
+  <div>
 
+    <img
+      :src="`https://flagpedia.net/data/flags/icon/72x54/${paisInfo.alpha2Code.toLowerCase()}.png`"
+      alt=""
+      srcset=""
+    />
+  </div>
+  <div>{{ paisInfo.name.common }}</div>
+  <div></div>
 
+  <table class="table">
+    <thead></thead>
+    <tbody>
+      <tr>
+        <td style="width: 30%">Capital</td>
+        <td>{{ paisInfo.capital[0] }}</td>
+      </tr>
+      <tr>
+        <td>Area</td>
+        <td>{{ paisInfo.area }} km <sup>2</sup></td>
+      </tr>
+      <tr>
+        <td>Borders</td>
+        <td>
+          <ul>
+            <li v-for="border in paisInfo.borders">
+              <router-link :to="`${buscarPais(border).alpha3Code}`">
+              {{buscarPais(border).name.common}}
+              </router-link>
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 <script setup>
-import { useRoute } from 'vue-router'
-import { ref, watchEffect } from 'vue'
-import countries from '../assets/countries.json';
-
+import { useRoute, useRouter } from "vue-router";
+import { ref, watch, onMounted } from "vue";
+import countries from "../assets/countries.json";
 
 // route nos da la informacion de la ruta
 const route = useRoute();
-const code = ref()
-const country = ref()
+const router = useRouter();
+const country = ref();
+const paisInfo = ref();
+const nombrePais = ref();
 
-console.log(route.params.code)
-
-const ruta = route.params.code
-
-    watchEffect(() => {
-        code.value = ruta
-        country.value = getCountry(code.value);
-        //Comprobamos
-        console.log(country.value.name.common)
-    });
-
-    
+watch(
+  () => route.params.code,
+  (newValue) => {
+    console.log("nuevo valor!", newValue);
+    paisInfo.value = buscarPais(route.params.code);
+  }
+);
 
 
-    function getCountry(code){
-        return countries.find(element => element.alpha3Code == code);
-    }
+const buscarPais = (code) => {
+  return countries.find((element) => element.alpha3Code == code);
+};
+
+paisInfo.value = buscarPais(route.params.code);
 
 
 
 
 </script>
-<style scoped>
-</style>
+<style scoped></style>
