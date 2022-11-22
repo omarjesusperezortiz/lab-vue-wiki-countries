@@ -1,28 +1,28 @@
 <template>
   <div>
-    <img
+    <img class="img-country-info"
       :src="`https://flagpedia.net/data/flags/icon/72x54/${paisInfo.alpha2Code.toLowerCase()}.png`"
       alt=""
       srcset=""
     />
   </div>
-  <div>{{ paisInfo.name.common }}</div>
+  <div class="country-name">{{ paisInfo.name.common }}</div>
   <div></div>
 
   <table class="table">
     <thead></thead>
     <tbody>
       <tr>
-        <td style="width: 30%">Capital</td>
-        <td>{{ paisInfo.capital[0] }}</td>
+        <td class="key" style="width: 30%">Capital</td>
+        <td class="value">{{ paisInfo.capital[0] }}</td>
       </tr>
       <tr>
-        <td>Area</td>
-        <td>{{ paisInfo.area }} km <sup>2</sup></td>
+        <td class="key">Area</td>
+        <td class="value">{{ paisInfo.area }} km <sup>2</sup></td>
       </tr>
       <tr>
-        <td>Borders</td>
-        <td>
+        <td class="key">Borders</td>
+        <td class="value">
           <ul>
             <li v-for="border in paisInfo.borders">
               <router-link :to="`${buscarPais(border).alpha3Code}`">
@@ -66,4 +66,28 @@ paisInfo.value = buscarPais(route.params.code);
 
 
 </script>
-<style scoped></style>
+<style scoped>
+
+.country-name{
+  color:white;
+  font-size:25px;
+  font-weight: 600;
+  line-height: 2;
+}
+.img-country-info{
+  width:120px;
+  height:auto;
+}
+
+.table {
+    background-color: #222;
+    color: #ffffff;
+    font-weight:600;
+    
+}
+.table tbody{
+  font-size:18px;
+}
+
+
+</style>

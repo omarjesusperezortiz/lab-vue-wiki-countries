@@ -7,7 +7,7 @@ const routes = [
     component: () => import(/* webpackChunkName: 'list' */ '../views/CountriesList.vue'),
     children: [
       {
-        path: '/:code',
+        path: ':code',
         name: 'details',
         component: () => import(/* webpackChunkName: 'details' */ '../views/CountriesDetails.vue')
       },
@@ -15,12 +15,13 @@ const routes = [
   }
 ];
 
+//CUANDO HAGAMOS BUILD DEPLOY NECESITAMOS SI O SI AGREGAR EL PROJECT NAME EN CREATEWEBHISTORY
 const router = createRouter({
-  history: createWebHistory('/'),
+  history: createWebHistory('/lab-vue-wiki-countries/'),
   routes,
-  // scrollBehavior() {
-  //   document.getElementById('app').scrollIntoView();
-  // }
+  scrollBehavior() {
+    document.getElementById('app').scrollIntoView();
+  }
 });
 
 export default router;

@@ -2,7 +2,7 @@
 <template>
     
 <nav class="navbar" role="navigation" aria-label="main navigation">
-    <h1 class="title">LAB - WikiCountries</h1>
+    <h1 class="title">WikiCountries</h1>
 </nav>
 </template>
 <script setup>
@@ -17,5 +17,8 @@
     display:sticky;
     top:0px;
 
+}
+.title{
+    color:white;
 }
 </style>
